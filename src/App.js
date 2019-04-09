@@ -4,7 +4,7 @@ import './App.css';
 //import Navigation from './components/Navigation'
 
 import { todos } from './todos.json';
-
+import TodoForm from './components/TodoForm'
 
 class App extends Component {
 
@@ -13,6 +13,17 @@ constructor(){
   this.state = {
     todos
   }
+  this.handleAddTodo = this.handleAddTodo.bind(this);
+}
+
+handleAddTodo(todo){
+  this.setState({
+    todos: [...this.state.todos, todo]
+  })
+}
+
+handleRemoveTodo(){
+
 }
 
   render() {
@@ -28,10 +39,11 @@ constructor(){
               </span>
             </div>
             <div className="card-body">
-              {todo.description}
+              <p>{todo.description}</p>
+              <p><mark>{todo.responsible}</mark></p>
             </div>
             <div className="card-footer">
-              {todo.priority}
+              <button className="btn btn-danger" type="submit" onClick={this.handleRemoveTodo}>Delete</button>
             </div>
           </div>
         </div>
@@ -48,12 +60,21 @@ constructor(){
           </span>
           </a>
         </nav>
+
         <div className="container">
-          <div className="row mt-4">
-            { todoss }
+          <div className="row mt-5">
+            <div className="col-6 col-md-3 text-center">
+              <img src={logo} className="App-logo smallImg center" alt="logo" />
+              <TodoForm onAddTodo={this.handleAddTodo}/>
+            </div>
+            <div className="col-md-8">
+              <div className="row">
+                {todoss}
+              </div>  
+            </div>    
           </div>
         </div>
-          <img src={logo} className="App-logo" alt="logo" />
+
       </div>
     );
   }

@@ -8,6 +8,11 @@
   pointer-events: none;
 }
 
+img.smallImg {
+  width: 150px; 
+  height: 150px;
+}
+
 /*.App-header {
   background-color: #282c34;
   min-height: 100vh;
